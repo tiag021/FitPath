@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FithPath</string>
+    <string name="title_activity_maps">FitPath</string>
+    <string name="topTitle">Correr</string>
+    <string name="runEndText">Pretender guardar a corrida?</string>
+    <string name="runName">Nome para guardar a corrida</string>
+    <string name="runDetails">Detalhes</string>
+    <string name="btnDelete">Apagar</string>
+    <string name="btnSave">Guardar</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Definições</string>
+
+    <string name="menu_map">Mapa</string>
+    <string name="menu_runs">Corridas</string>
+    <string name="menu_exit">Sair</string>
+</resources>
