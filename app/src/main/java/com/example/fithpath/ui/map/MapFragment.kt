@@ -1,5 +1,6 @@
 package com.example.fithpath.ui.map
-
+//Fontes: https://www.geeksforgeeks.org/how-to-implement-current-location-button-feature-in-google-maps-in-android/
+//http://www.wepstech.com/open-gps-in-android/
 import android.Manifest
 import android.app.Activity
 import android.app.Dialog
@@ -94,7 +95,7 @@ class MapFragment : Fragment(), LocationListener {
     ): View {
         val rootView: View = inflater.inflate(R.layout.fragment_map, container, false)
 
-        //inicializar variaveis
+        //inicialização de variáveis
         start = rootView.findViewById(R.id.startBtn)
         stop = rootView.findViewById(R.id.stopBtn)
         currentLocation = rootView.findViewById(R.id.currentLocBtn)
@@ -292,7 +293,7 @@ class MapFragment : Fragment(), LocationListener {
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), locationPermissionCode
             )
         }else{
-            //obtem a localização atual e faz zoom na mesma
+            //obtem a localização atual e faz zoom
             enableLocation()
         }
     }
@@ -334,7 +335,7 @@ class MapFragment : Fragment(), LocationListener {
         builder.setMessage("Por favor ative o GPS")
         builder.setPositiveButton(
             "OK"
-        ) { _, _ -> // Abre as definições de localixação quando o utilizador clicar em ok
+        ) { _, _ -> // Abre as definições de localização quando o utilizador clicar em ok
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
             startActivity(intent)
         }
@@ -360,6 +361,7 @@ class MapFragment : Fragment(), LocationListener {
          */
         mMap = googleMap
 
+        //caso tenha permitido o acesso à localização, liga-a
         if (ActivityCompat.checkSelfPermission(
                 context!!,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -386,19 +388,20 @@ class MapFragment : Fragment(), LocationListener {
                 PolylineOptions().add(lastLatLng).add(thisLatLng).jointType(2).width(25f)
                     .color(Color.RED)
             )
-            //calcular distância
+            //calcular distância percorrida
             dkms += userLocation!!.distanceTo(location)
             distanceTraveled.text = dkms.toInt().toString() + 'm'
 
             userLocation = location
 
+            //efetuar zoom e rodar a camera sempre para norte
             val updatedCameraPosition = CameraPosition.Builder()
                 .target(thisLatLng)
                 .zoom(20f)
                 .bearing(location.bearing)
                 .build()
 
-            // Animate the camera to the updated position.
+            //animar a camera de acordo com as definições previamente estabelecidas
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(updatedCameraPosition))
         }
     }

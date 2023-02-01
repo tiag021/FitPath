@@ -5,13 +5,13 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ExpandableListView
 import androidx.fragment.app.Fragment
 import com.example.fithpath.R
-import java.io.*
-import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashMap
+import com.example.fithpath.databinding.FragmentRunsBinding
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 
 
 /**
@@ -20,9 +20,10 @@ import kotlin.collections.HashMap
 class RunsFragment : Fragment() {
 
 
-    // Object-reference of our ListView
     private lateinit var runs: ExpandableListView
     private lateinit var arrayAdapter: ExpandableListViewAdapter
+    private var _binding: FragmentRunsBinding? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,7 +33,7 @@ class RunsFragment : Fragment() {
         val rootView: View = inflater.inflate(R.layout.fragment_runs, container, false)
 
         runs = rootView.findViewById(R.id.elView)
-        // leitura do internal Storage
+        //leitura do internal Storage
         val directory: File = activity!!.filesDir
         val file: File = File(directory, "runsData.txt")
         val content = ByteArray(file.length().toInt())
@@ -82,5 +83,9 @@ class RunsFragment : Fragment() {
             }
         }
         return rootView
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

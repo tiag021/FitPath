@@ -13,9 +13,11 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Definições</string>
-
+    <string name="menu_about_us">Sobre nós</string>
     <string name="menu_map">Mapa</string>
     <string name="menu_runs">Corridas</string>
     <string name="menu_exit">Sair</string>
+    <string name="about_us">
+        Este trabalho do curso de Licenciatura de Engenharia Informática, foi-nos proposto para a disciplina de
+        Desenvolvimento de Aplicações Móveis e desenvolvido pelos alunos:\nTiago Fernandes nº.22102\nRafael Pimentel nº.20963</string>
 </resources>

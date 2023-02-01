@@ -11,7 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
-        <!-- Customize your theme here. -->
+        <!-- Cor do texto das 'Definições' e 'Sobre nós' -->
+        <item name="android:actionMenuTextColor">@color/teal_700</item>
     </style>
 
     <style name="Theme.FithPath.NoActionBar">

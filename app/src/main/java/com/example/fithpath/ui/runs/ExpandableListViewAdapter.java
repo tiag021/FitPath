@@ -1,4 +1,5 @@
 package com.example.fithpath.ui.runs;
+//Fonte: https://www.youtube.com/watch?v=1aBBFgRL03Q&t=249s
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -82,6 +83,8 @@ class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.fragment_runs_childrow, null);
         }
+
+        //insere a imagem na ExpandableListview
         File imgFile = new  File(getChild(groupPosition, childPosition).toString());
 
         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
