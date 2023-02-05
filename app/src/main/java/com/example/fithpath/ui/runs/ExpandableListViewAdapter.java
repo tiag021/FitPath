@@ -66,34 +66,32 @@ class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        if (convertView == null){
+        if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.fragment_runs_parentrow, null);
         }
 
         TextView runStats = convertView.findViewById(R.id.runStat);
-        runStats.setText((String)getGroup(groupPosition));
+        runStats.setText((String) getGroup(groupPosition));
 
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        if (convertView == null){
+        if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.fragment_runs_childrow, null);
         }
-
         //insere a imagem na ExpandableListview
-        File imgFile = new  File(getChild(groupPosition, childPosition).toString());
+        File imgFile = new File(getChild(groupPosition, childPosition).toString());
 
         Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
 
         ImageView runStats = convertView.findViewById(R.id.runPhoto);
 
-        if(runStats.getDrawable() == null){
-            runStats.setImageBitmap(myBitmap);
-        }
+        runStats.setImageBitmap(myBitmap);
+
         return convertView;
     }
 
