@@ -27,9 +27,11 @@ class Register : AppCompatActivity() {
     }
 
     private fun clickListener(){
+        //O utilizador será redirecionado ao Login
         binding.tvLogin.setOnClickListener{
             moveToLogin()
         }
+
         binding.btnRegister.setOnClickListener{
             getInputs()
         }
@@ -40,6 +42,7 @@ class Register : AppCompatActivity() {
     }
 
     private fun getInputs(){
+        //Guardar os inputs e validar
         val name = binding.rgName.text.toString()
         val email = binding.rgEmail.text.toString()
         val password = binding.rgPassword.text.toString()
@@ -47,7 +50,7 @@ class Register : AppCompatActivity() {
 
         if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
             if(password == confirmPassword){
-                //Registo
+                //Registar o utilizador novo
                 registerUser(name, email, password, confirmPassword)
             }else{
                 showMessage("As passwords não combinam")
@@ -67,6 +70,7 @@ class Register : AppCompatActivity() {
                 response: Response<RegisterResponse>
             ) {
                 if(response.isSuccessful){
+                    //O Registo foi um sucesso e o utilizador pode iniciar sessão com a sua conta nova
                     moveToLogin()
                 }else{
                     showMessage("Ocorreu um erro ao registar")

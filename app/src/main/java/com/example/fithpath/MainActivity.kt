@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+
+        //Abre o ficheiro user.txt, se existir, e verifica a existência do token de login
         val file = File(filesDir, "user.txt")
         val content = ByteArray(file.length().toInt())
         if (file.isFile) {
@@ -32,8 +34,10 @@ class MainActivity : AppCompatActivity() {
                 val token = userList[1]
 
                 if(token.isNotEmpty()){
+                    //O utilizador tem sessão iniciada e pode aceder à aplicação
                     startActivity(Intent(this, Maps::class.java))
                 }else{
+                    //O Utilizador não tem sessão iniciada e deve fazê-lo
                     startActivity(Intent(this, Login::class.java))
                 }
 
@@ -41,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }else{
+            //Se o ficheiro não existe, redireciona para a página de login
             startActivity(Intent(this, Login::class.java))
         }
     }

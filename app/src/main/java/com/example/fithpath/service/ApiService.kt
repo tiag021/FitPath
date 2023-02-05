@@ -8,6 +8,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
+//endpoints disponibilizados pela API
 interface ApiService {
     @POST("/api/login")
     fun loginUser(@Body loginRequest: LoginRequest): Call<LoginResponse>

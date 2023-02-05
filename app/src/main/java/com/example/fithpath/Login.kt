@@ -16,6 +16,7 @@ import java.io.FileOutputStream
 
 class Login : AppCompatActivity() {
 
+    //Definir o binding da Atividade
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,11 +46,13 @@ class Login : AppCompatActivity() {
         startActivity(Intent(this, Register::class.java))
     }
 
+    //Obter e validar os inputs introduzidos pelo utilizador
     private fun getInputs(){
         val email = binding.lgEmail.text.toString()
         val password = binding.lgPassword.text.toString()
 
         if(email.isNotEmpty() && password.isNotEmpty()){
+            //Iniciar sessão com os valores obtidos na API
             loginUser(email, password)
         }else{
             showMessage("Ambos os campos têm que estar preenchidos")
@@ -64,10 +67,12 @@ class Login : AppCompatActivity() {
     private fun loginUser(email: String, password: String){
         val loginRequest = LoginRequest(email, password)
 
+        //Enviar o email e password para a API e obter resposta
         val apiCall = ApiClient.getApiService().loginUser(loginRequest)
         apiCall.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
+                    //Guardar o nome e Token obtidos pela API em variável
                     val name = response.body()!!.data.name
                     val token = response.body()!!.data.token
 
@@ -75,6 +80,7 @@ class Login : AppCompatActivity() {
                     arraylist.add(name)
                     arraylist.add(token)
 
+                    //Salvar o nome e token em ficheiro user.txt
                     val directory: File = applicationContext.filesDir
                     val file = File(directory, "user.txt")
                     val fo = FileOutputStream(file, true)

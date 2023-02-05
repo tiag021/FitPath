@@ -35,12 +35,10 @@ class ExitFragment : Fragment() {
         fragLogout = rootView.findViewById(R.id.fragLogout)
 
         logout.setOnClickListener {
-            //pede permissões de localização
             logout()
         }
 
         cancel.setOnClickListener {
-            //não guarda a corrida
             fragLogout.isVisible = false
             startActivity(Intent(activity, MapFragment::class.java))
 
@@ -50,6 +48,7 @@ class ExitFragment : Fragment() {
     }
 
     private fun logout(){
+        //Remove o ficheiro user.txt, e redireciona o utilizador para a página de Login
         val file = File(activity!!.filesDir, "user.txt")
         if(file.isFile){
             file.delete()
