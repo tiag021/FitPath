@@ -68,18 +68,13 @@ class RunsFragment : Fragment() {
 
 
                 for(i in 0 until statsList.size){
-                    photoList[statsList[i]] = appDirectoryFiles[i]
+                    photoList.put(statsList[i], appDirectoryFiles[i])
                 }
                 //mostra aos valores na listview
-
                 arrayAdapter =
                     ExpandableListViewAdapter(activity!!, statsList, photoList)
                 runs.setAdapter(arrayAdapter)
             } catch (e: FileNotFoundException) {
-
-                runs.setOnClickListener {
-
-                }
             }
         }
         return rootView

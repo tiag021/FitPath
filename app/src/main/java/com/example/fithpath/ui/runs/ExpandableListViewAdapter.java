@@ -36,7 +36,7 @@ class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return listPhotos.size();
+        return 1;
     }
 
     @Override
@@ -91,8 +91,9 @@ class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
         ImageView runStats = convertView.findViewById(R.id.runPhoto);
 
-        runStats.setImageBitmap(myBitmap);
-
+        if(runStats.getDrawable() == null){
+            runStats.setImageBitmap(myBitmap);
+        }
         return convertView;
     }
 
