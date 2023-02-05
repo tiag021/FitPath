@@ -42,7 +42,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
-import com.google.android.material.navigation.NavigationView
 import java.io.*
 
 
@@ -162,7 +161,7 @@ class MapFragment : Fragment(), LocationListener {
         ok.setOnClickListener {
             saveRunName.isVisible = false
             //guardar os valores num arraylist
-            var arraylist = ArrayList<String>()
+            val arraylist = ArrayList<String>()
             arraylist.add("Nome:" + runName.text.toString())
             arraylist.add("Distância: " + dkms.toInt().toString())
             arraylist.add("Tempo: " + stopWatchText.text.toString())
@@ -175,6 +174,7 @@ class MapFragment : Fragment(), LocationListener {
             //reset à UI da corrida
             stopWatch.reset()
             distanceTraveled.text = "0m"
+            mMap.clear()
             cameraPermissions()
         }
 
@@ -182,61 +182,10 @@ class MapFragment : Fragment(), LocationListener {
             //não guarda a corrida
             saveRun.isVisible = false
             //reset à UI da corrida
+            mMap.clear()
             stopWatch.reset()
             distanceTraveled.text = "0m"
         }
-
-
-
-/*
-        val file: File = File(activity!!.filesDir, "user.txt")
-        val content = ByteArray(file.length().toInt())
-
-        if (file.isFile) {
-            try {
-                //obtem o ficheiro de dados sobre as corridas
-                val fi: FileInputStream = FileInputStream(file)
-                fi.read(content)
-                fi.close()
-
-                //guardar o content numa string
-                var s: String = String(content)
-                //retirar os []
-                s = s.substring(1, s.length - 1)
-                //separar os valores
-                val values = s.split(", ")
-                //guarda-los num array
-                val statsList = ArrayList(values)
-
-                val nome : TextView = activity!!.findViewById(R.id.usrName)
-                nome.setText(statsList[0]).toString()
-
-
-
-            } catch (e: FileNotFoundException) {
-
-            }
-        }
-
-
-
- */
-
-/*
-        val navigationView = rootView.findViewById(R.id.nav_toEdit) as NavigationView
-        val headerView = navigationView.getHeaderView(0)
-        val navUsername = headerView.findViewById<View>(R.id.usrName) as TextView
-        navUsername.text = "Your Text Here"
-/*
-        val nome : TextView = rootView.findViewById(R.id.usrName)
-        nome.setText("Heelo").toString()
-
-
- */
-
-
- */
-
 
         return rootView
     }
@@ -363,20 +312,18 @@ class MapFragment : Fragment(), LocationListener {
                 isLocationOn = false
             } else {
                 // Obtem a localização atual
-                if (mMap.myLocation != null) {
-                    userLocation = mMap.myLocation
+                userLocation = mMap.myLocation
+                isLocationOn = true
+                if (!runStarted) {
                     isLocationOn = true
-                    if (!runStarted) {
-                        isLocationOn = true
-                        // Faz zoom na localização atual do utilizador
-                        mMap.moveCamera(
-                            CameraUpdateFactory.newLatLngZoom(
-                                LatLng(
-                                    userLocation!!.latitude, userLocation!!.longitude
-                                ), 16f
-                            )
+                    // Faz zoom na localização atual do utilizador
+                    mMap.moveCamera(
+                        CameraUpdateFactory.newLatLngZoom(
+                            LatLng(
+                                userLocation!!.latitude, userLocation!!.longitude
+                            ), 16f
                         )
-                    }
+                    )
                 }
             }
         }

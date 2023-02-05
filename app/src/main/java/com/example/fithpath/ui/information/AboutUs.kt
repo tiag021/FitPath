@@ -10,22 +10,11 @@ import com.example.fithpath.databinding.FragmentAboutUsBinding
 
 class AboutUs : Fragment() {
 
-    private var _binding: FragmentAboutUsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         return inflater.inflate(R.layout.fragment_about_us, container, false)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

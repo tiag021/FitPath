@@ -69,10 +69,9 @@ class Login : AppCompatActivity() {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
                     val name = response.body()!!.data.name
-                    val ss = response.body()!!.success
                     val token = response.body()!!.data.token
 
-                    var arraylist = ArrayList<String>()
+                    val arraylist = ArrayList<String>()
                     arraylist.add(name)
                     arraylist.add(token)
 
@@ -82,7 +81,6 @@ class Login : AppCompatActivity() {
                     fo.write(arraylist.toString().toByteArray())
                     fo.close()
 
-
                     moveToMainActivity()
                 }else{
                     showMessage("Não foi possivel iniciar sessão. Verifique a sua password")
@@ -90,7 +88,6 @@ class Login : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                TODO("Not yet implemented")
             }
 
         })

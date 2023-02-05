@@ -6,30 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.example.fithpath.Login
-import com.example.fithpath.Maps
 import com.example.fithpath.R
-import com.example.fithpath.databinding.FragmentExitBinding
 import com.example.fithpath.ui.map.MapFragment
 import java.io.File
-import kotlin.math.log
 
 class ExitFragment : Fragment() {
-
-    private var _binding: FragmentExitBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
 
     //Botões
     private lateinit var logout: AppCompatButton
     private lateinit var cancel: AppCompatButton
+    //Fragmento
     private lateinit var fragLogout: RelativeLayout
 
     override fun onCreateView(
@@ -37,13 +27,12 @@ class ExitFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentExitBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        val rootView: View = inflater.inflate(R.layout.fragment_exit, container, false)
 
         //inicialização de variáveis
-        logout = root.findViewById(R.id.btnLogout)
-        cancel = root.findViewById(R.id.btnCancel)
-        fragLogout = root.findViewById(R.id.fragLogout)
+        logout = rootView.findViewById(R.id.btnLogout)
+        cancel = rootView.findViewById(R.id.btnCancel)
+        fragLogout = rootView.findViewById(R.id.fragLogout)
 
         logout.setOnClickListener {
             //pede permissões de localização
@@ -57,20 +46,15 @@ class ExitFragment : Fragment() {
 
         }
 
-        return root
+        return rootView
     }
 
-    fun logout(){
-        val file: File = File(activity!!.filesDir, "user.txt")
+    private fun logout(){
+        val file = File(activity!!.filesDir, "user.txt")
         if(file.isFile){
             file.delete()
         }
 
         startActivity(Intent(activity, Login::class.java))
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

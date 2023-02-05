@@ -35,18 +35,18 @@ class RunsFragment : Fragment() {
         runs = rootView.findViewById(R.id.elView)
         //leitura do internal Storage
         val directory: File = activity!!.filesDir
-        val file: File = File(directory, "runsData.txt")
+        val file = File(directory, "runsData.txt")
         val content = ByteArray(file.length().toInt())
 
         if (file.isFile) {
             try {
                 //obtem o ficheiro de dados sobre as corridas
-                val fi: FileInputStream = FileInputStream(file)
+                val fi = FileInputStream(file)
                 fi.read(content)
                 fi.close()
 
                 //guardar o content numa string
-                var s: String = String(content)
+                var s = String(content)
                 //retirar os []
                 s = s.substring(1, s.length - 1)
                 //separar os valores
@@ -68,7 +68,7 @@ class RunsFragment : Fragment() {
 
 
                 for(i in 0 until statsList.size){
-                    photoList.put(statsList[i], appDirectoryFiles[i])
+                    photoList[statsList[i]] = appDirectoryFiles[i]
                 }
                 //mostra aos valores na listview
 

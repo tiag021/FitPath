@@ -46,7 +46,7 @@ class Register : AppCompatActivity() {
         val confirmPassword = binding.rgConfirmPassword.text.toString()
 
         if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
-            if(password.equals(confirmPassword)){
+            if(password == confirmPassword){
                 //Registo
                 registerUser(name, email, password, confirmPassword)
             }else{

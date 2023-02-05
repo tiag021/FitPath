@@ -1,9 +1,8 @@
 package com.example.fithpath
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileNotFoundException
@@ -13,25 +12,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val file: File = File(filesDir, "user.txt")
+        val file = File(filesDir, "user.txt")
         val content = ByteArray(file.length().toInt())
         if (file.isFile) {
             try {
-                //obtem o ficheiro de dados sobre as corridas
-                val fi: FileInputStream = FileInputStream(file)
+                //obtem o ficheiro de dados sobre os utilizadores
+                val fi = FileInputStream(file)
                 fi.read(content)
                 fi.close()
 
-                //guardar o content numa string
-                var s: String = String(content)
-                //retirar os []
+                //guarda o content numa string
+                var s = String(content)
+                //retira os []
                 s = s.substring(1, s.length - 1)
-                //separar os valores
+                //separa os valores
                 val values = s.split(", ")
-                //guarda-los num array
-                val statsList = ArrayList(values)
+                //guarda-os num array
+                val userList = ArrayList(values)
+                val token = userList[1]
 
-                if(statsList[1].isNotEmpty()){
+                if(token.isNotEmpty()){
                     startActivity(Intent(this, Maps::class.java))
                 }else{
                     startActivity(Intent(this, Login::class.java))
