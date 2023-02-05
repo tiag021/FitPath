@@ -13,7 +13,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Login : AppCompatActivity() {
+
     private lateinit var binding: ActivityLoginBinding
+    /*
+    val sharedPref = getSharedPreferences ( "user", MODE_PRIVATE)
+    val editor = sharedPref.edit()
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -46,7 +52,7 @@ class Login : AppCompatActivity() {
         if(email.isNotEmpty() && password.isNotEmpty()){
             loginUser(email, password)
         }else{
-            showMessage("")
+            showMessage("Ambos os campos têm que estar preenchidos")
         }
     }
 
@@ -62,6 +68,15 @@ class Login : AppCompatActivity() {
         apiCall.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
+                    val name = response.body()!!.name
+                    val token = response.body()!!.token
+                    /*
+                    editor.apply{
+                        putString("name", name)
+                        putString("token", token)
+                    }
+
+                     */
                     moveToMainActivity()
                 }else{
                     showMessage("Não foi possivel iniciar sessão. Verifique a sua password")
@@ -76,7 +91,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun moveToMainActivity() {
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, Maps::class.java))
     }
 
 }
