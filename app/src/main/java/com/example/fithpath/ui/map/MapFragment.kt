@@ -1,6 +1,7 @@
 package com.example.fithpath.ui.map
 //Fontes: https://www.geeksforgeeks.org/how-to-implement-current-location-button-feature-in-google-maps-in-android/
 //http://www.wepstech.com/open-gps-in-android/
+
 import android.Manifest
 import android.app.Activity
 import android.app.Dialog
@@ -41,6 +42,7 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.navigation.NavigationView
 import java.io.*
 
 
@@ -183,6 +185,58 @@ class MapFragment : Fragment(), LocationListener {
             stopWatch.reset()
             distanceTraveled.text = "0m"
         }
+
+
+
+/*
+        val file: File = File(activity!!.filesDir, "user.txt")
+        val content = ByteArray(file.length().toInt())
+
+        if (file.isFile) {
+            try {
+                //obtem o ficheiro de dados sobre as corridas
+                val fi: FileInputStream = FileInputStream(file)
+                fi.read(content)
+                fi.close()
+
+                //guardar o content numa string
+                var s: String = String(content)
+                //retirar os []
+                s = s.substring(1, s.length - 1)
+                //separar os valores
+                val values = s.split(", ")
+                //guarda-los num array
+                val statsList = ArrayList(values)
+
+                val nome : TextView = activity!!.findViewById(R.id.usrName)
+                nome.setText(statsList[0]).toString()
+
+
+
+            } catch (e: FileNotFoundException) {
+
+            }
+        }
+
+
+
+ */
+
+/*
+        val navigationView = rootView.findViewById(R.id.nav_toEdit) as NavigationView
+        val headerView = navigationView.getHeaderView(0)
+        val navUsername = headerView.findViewById<View>(R.id.usrName) as TextView
+        navUsername.text = "Your Text Here"
+/*
+        val nome : TextView = rootView.findViewById(R.id.usrName)
+        nome.setText("Heelo").toString()
+
+
+ */
+
+
+ */
+
 
         return rootView
     }

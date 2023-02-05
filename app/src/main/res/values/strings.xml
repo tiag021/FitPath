@@ -17,6 +17,9 @@
     <string name="menu_map">Mapa</string>
     <string name="menu_runs">Corridas</string>
     <string name="menu_exit">Sair</string>
+    <string name="logout">Deseja fazer logout?</string>
+    <string name="btnLogout">Sim</string>
+    <string name="btnCancelar">Cancelar</string>
     <string name="about_us">
         Este trabalho do curso de Licenciatura de Engenharia Informática, foi-nos proposto para a disciplina de
         Desenvolvimento de Aplicações Móveis e desenvolvido pelos alunos:\nTiago Fernandes nº.22102\nRafael Pimentel nº.20963</string>

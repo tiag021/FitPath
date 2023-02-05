@@ -11,14 +11,12 @@ import com.example.fithpath.models.response.LoginResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
+import java.io.FileOutputStream
 
 class Login : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    /*
-    val sharedPref = getSharedPreferences ( "user", MODE_PRIVATE)
-    val editor = sharedPref.edit()
-     */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +31,11 @@ class Login : AppCompatActivity() {
     }
 
     private fun clickListener(){
+        // Se o utlizador não tiver conta, tem a opção de mudar para a view de registo
         binding.tvRegister.setOnClickListener{
             moveToRegister()
         }
+
         binding.btnLogin.setOnClickListener{
             getInputs()
         }
@@ -68,15 +68,21 @@ class Login : AppCompatActivity() {
         apiCall.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if(response.isSuccessful){
-                    val name = response.body()!!.name
-                    val token = response.body()!!.token
-                    /*
-                    editor.apply{
-                        putString("name", name)
-                        putString("token", token)
-                    }
+                    val name = response.body()!!.data.name
+                    val ss = response.body()!!.success
+                    val token = response.body()!!.data.token
 
-                     */
+                    var arraylist = ArrayList<String>()
+                    arraylist.add(name)
+                    arraylist.add(token)
+
+                    val directory: File = applicationContext.filesDir
+                    val file = File(directory, "user.txt")
+                    val fo = FileOutputStream(file, true)
+                    fo.write(arraylist.toString().toByteArray())
+                    fo.close()
+
+
                     moveToMainActivity()
                 }else{
                     showMessage("Não foi possivel iniciar sessão. Verifique a sua password")

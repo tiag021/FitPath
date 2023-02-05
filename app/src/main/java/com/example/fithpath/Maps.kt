@@ -2,7 +2,9 @@ package com.example.fithpath
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -12,6 +14,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.fithpath.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
 
 class Maps : AppCompatActivity() {
 
@@ -51,7 +56,18 @@ class Maps : AppCompatActivity() {
 
         //manter o ecrã sempre ligado
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+
+
+
+
+
+
+
+
      }
+
+    //override fun onDrawerOpened
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
